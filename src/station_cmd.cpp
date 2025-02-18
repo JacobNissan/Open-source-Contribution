@@ -1652,6 +1652,9 @@ CommandCost RemoveFromRailBaseStation(TileArea ta, std::vector<T *> &affected_st
 		/* Make sure the specified tile is a rail station */
 		if (!HasStationTileRail(tile)) continue;
 
+        /* Skip clearing if the tile is grey */
+        if (GetTileType(tile) == TC_GREY) continue;
+
 		/* If there is a vehicle on ground, do not allow to remove (flood) the tile */
 		CommandCost ret = EnsureNoVehicleOnGround(tile);
 		error.AddCost(ret);
